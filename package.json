@@ -1,0 +1,23 @@
+{
+  "name": "todo_ts",
+  "version": "1.0.0",
+  "description": "TypeScript-demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/montysingh9527/todo_ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/montysingh9527/todo_ts/issues"
+  },
+  "homepage": "https://github.com/montysingh9527/todo_ts#readme",
+  "devDependencies": {
+    "vite": "^4.1.4"
+  }
+}
