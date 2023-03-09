@@ -20,3 +20,156 @@
     操作DOM：addItem、removeItem、changeCompleted
     管理模板：todoView ——> 接收参数
 ```
+
+
+#### TypeScript使用基础
+```
+变量上的类型注释：冒号+类型     let name:string = "vic";
+
+
+```
+
+###### 函数
+```
+             string：参数类型注释  void：返回值类型注释
+function greet(name: string): void{
+    console.log("Hello" + name)
+}
+greet("leiyu")
+
+function getNumber(): number {
+    return 25;
+}
+```
+
+###### 对象类型
+```
+对象类型                    
+                        逗号或分号
+function printCoord(pt: {x:number, y:number}){
+    console.log("坐标的值: " + pt.x + pt.y)
+}
+printCoord({x: 3, y: 4})
+
+                                            ?:可选。可传可不传
+function printName(obj: {first:string; last?: string}){
+    console.log("name: " + obj.first + obj.last)
+                        last可能是undefined 要用?.
+    console.log(obj.last?.toUpperCase())
+}
+printName({first:"Felix"})
+printName({first:"Felix", last: "vic"})
+```
+
+###### 联合类型 union
+```
+            两个或多个其它类型组成的类型
+    let id: number | string
+function printId(id: number| string){
+    console.log(id)
+}
+printId(101)
+printId("202")
+// printId({myid: 123})
+
+function people(x:string[]| string){
+    if(Array.isArray(x)){
+        console.log("Hello" + x.join(" and "))
+    }else {
+        console.log("Welcome lone " + x)
+    }
+}
+people("A")
+people(["a","b"])
+
+function three(x:number[] | string):number[] | string{
+    return x.slice(0, 3)
+}
+console.log(three("abcde"))
+```
+
+###### 类型别名
+```
+type Point = {
+    x: number;
+    y: number;
+}
+function printCoord(pt: Point){
+    console.log()
+}
+printCoord({ x: 100, y: 200 })
+
+type ID = number | string;
+function printId(id: ID){
+    console.log(id)
+}
+printId(100)
+printId("hello")
+
+type UserInputString = string;
+function sanitizedInput(str: string):UserInputString {
+    return str.slice(0, 2)
+}
+sanitizedInput("hello");
+```
+
+###### 接口 和 类型别名
+```
+接口interface定义
+区别：接口可以向现有类型添加字段。类型别名创建后不能更改
+
+interface Point {
+    x: number;
+    y: number;
+}
+function printCoord(pt: Point){
+    console.log("坐标"+pt.x + pt.y);
+}
+printCoord({x: 100, y: 200})
+
+// 接口 扩展
+interface Animal {
+    name: string
+}
+interface Bear extends Animal {
+    honey: boolean
+}
+const bear: Bear = {
+    name: "winie",
+    honey: true
+}
+console.log(bear.name);
+console.log(bear.honey);
+
+// 类型别名 扩展
+type Animal = {
+    name: string
+}
+type Bear = Animal & {
+    honey: boolean
+}
+const bear: Bear = {
+    name: "winnie",
+    honey: true
+}
+
+// 接口 向现有的类型添加字段
+interface MyWindow {
+    count: number
+}
+interface MyWindow {
+    title: string
+}
+const w: MyWindow = {
+    title: "hello ts",
+    count: 100
+}
+
+// 类型别名 类型创建后是不能更改的
+type MyWindow = {
+    title: string
+}
+type MyWindow = {
+    count: number
+}
+```
