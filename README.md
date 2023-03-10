@@ -173,3 +173,71 @@ type MyWindow = {
     count: number
 }
 ```
+
+###### 类型断言
+```
+                        返回某种类型的HTMLElement
+const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement
+const myCanvas2 = <HTMLCanvasElement>document.getElementById("main_canvas")
+const x = ("hello" as unknown) as number
+```
+
+###### 文字类型
+```
+let testString = "Hello World";
+testString = "vic mundo";
+// testString  可以表示任何可能的字符串
+testString;
+const constantString = "Hello World";
+// constantString   只能表示1个可能的字符串
+
+
+function printText(s: string, alignment: "left" | "right" | "center"){
+    console.log(s + alignment)
+}
+printText("hello", "left")
+
+function compare(a: string, b: string): -1|0|1 {
+    return a === b ? 0 : a > b ? 1 : -1;
+}
+
+function handleRequest(url: string, method:"GET"|"POST"|"GUESS"){
+    console.log(url + method)
+}
+const req = { url: "http://baidu.com",method:"GET"} as const;
+handleRequest(req.url, req.method);
+```
+
+###### null 和 unfined 类型
+```
+null  // 不存在
+undefined 未初始化的值
+
+let x: undefined = undefined
+let y: null = null
+let z: string = undefined
+function doSomething(x: string|null){
+    if(x == null){
+        // 做一些什么
+    }else {
+        console.log("hello" + x.toUpperCase())
+    }
+}
+
+function liveDangerously(x?: number|null){
+    console.log(x!.toFixed())
+}
+```
+
+###### 枚举
+```
+enum Direction {
+    Up = 1,
+    Down,
+    Left,
+    Right,
+}
+
+console.log(Direction.Up)
+console.log(Direction.Down)
+```
